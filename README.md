@@ -77,6 +77,24 @@ WantedBy=multi-user.target
 
 
 
+
+[Unit]
+Description=Sunshine Game Streaming Server
+After=graphical.target pipewire-pulse.socket
+Wants=graphical.target
+
+[Service]
+ExecStart=/usr/bin/sunshine
+Restart=always
+RestartSec=5
+User=root
+Environment=DISPLAY=:0
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+Environment=PULSE_SERVER=unix:/run/user/1000/pulse/native
+
+[Install]
+WantedBy=multi-user.target
+
 ### VM Setup
 
 cpu: host
